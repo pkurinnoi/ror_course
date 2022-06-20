@@ -21,5 +21,5 @@ if a.uniq.size == 3
 end
 
 if a.include? Math.sqrt(middle_side)
-  puts "- triangle is square (прямоугольный);"
+  puts "- square (прямоугольный);"
 end
