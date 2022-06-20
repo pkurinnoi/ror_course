@@ -1,1 +1,2 @@
 Hello World
+RubyMine IDE commit test
