@@ -29,10 +29,10 @@ if @discr > 0
     print_discr
     print_root1
     print_root2
-  elsif @discr < 0
+elsif @discr < 0
     print_discr
     puts "No equation roots (Корней нет)"
-  else
+else
     print_discr
     print_root1
 end
