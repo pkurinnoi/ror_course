@@ -1,8 +1,7 @@
 cart = {}
-$total_price = 0
+total_price = 0
 
 loop do
-
   puts "Product name"
   product = gets.chomp.to_str
 
@@ -14,10 +13,10 @@ loop do
   puts "Product quantity"
   qty = gets.chomp.to_f
 
-  cart[product] = {price => qty}
+  cart[product] = { price => qty }
 
-  $total_price += price * qty
+  total_price += price * qty
 end
 
 puts "Cart #{cart}"
-puts "Total price: #{$total_price}"
+puts "Total price: #{total_price}"
