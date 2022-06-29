@@ -44,7 +44,33 @@ class Train
     end
   end
 
-  def route
+  def get_route(map)
+    @current_route = map.route
+    @station_num = 0
+    @current_station = @current_route[@station_num]
+  end
 
+  def move(direction)
+    directions = ['fwd','back']
+    raise "Error: type must be 'fwd' or 'back'" unless directions.include?(direction)
+    if direction == 'fwd' && @station_num < @current_route.size - 1
+      @station_num += 1
+      @current_station = @current_route[@station_num]
+    elsif direction == 'back' && @station_num > 0
+      @station_num -= 1
+      @current_station = @current_route[@station_num]
+    else
+      @current_station
+    end
+  end
+
+  def route
+    if @station_num == 0
+      { 'Curr' => @current_station, 'Next' => @current_route[@station_num + 1] }
+    elsif @station_num < @current_route.size - 1 && @station_num > 0
+      { 'Prev' => @current_route[@station_num - 1], 'Curr' => @current_station, 'Next' => @current_route[@station_num + 1] }
+    else
+      { 'Prev' => @current_route[@station_num - 1], 'Curr' => @current_station }
+    end
   end
 end
