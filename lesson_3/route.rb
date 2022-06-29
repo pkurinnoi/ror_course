@@ -1,12 +1,14 @@
 class Route
-  def initialize(start_station = 'start', final_station = 'finish')
+  attr_reader :start_station
+
+  def initialize(start_station, final_station)
     @middle = []
-    @start = [start_station]
-    @final = [final_station]
+    @start_station = start_station
+    @final_station = final_station
   end
 
   def add(station)
-    @middle.push [station]
+    @middle << station
   end
 
   def remove(station)
@@ -14,6 +16,6 @@ class Route
   end
 
   def route
-    [@start, @middle, @final].flatten
+    [[@start_station], @middle, [@final_station]].flatten(1)
   end
 end
