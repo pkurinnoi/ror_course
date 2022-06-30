@@ -44,12 +44,35 @@ class Train
   def move(direction)
     directions = ['fwd','back']
     raise "Error: type must be 'fwd' or 'back'" unless directions.include?(direction)
-    #TODO (вероятно надо через методы станций ниже)
+
+    if direction == 'fwd' && @current_station != @current_route.route[-1]
+      @current_station.train_departure(self)
+      @speed = 200
+      @current_station = next_station
+      @current_station.train_arrival(self)
+      stop
+    elsif direction == 'back' && @current_station != @current_route.route[0]
+      @current_station.train_departure(self)
+      @speed = 200
+      @current_station = prev_station
+      @current_station.train_arrival(self)
+      stop
     end
   end
 
-  def route
-    #TODO наверное надо делать отдельные методы для каждой станции (предыдущая и следующая)
+  def prev_station
+    station_num = @current_route.route.find_index(@current_station)
+
+    if station_num > 0
+      @current_route.route[station_num - 1]
+    end
+  end
+
+  def next_station
+    station_num = @current_route.route.find_index(@current_station)
+
+    if station_num < @current_route.route.size() - 1
+      @current_route.route[station_num + 1]
     end
   end
 end
