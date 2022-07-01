@@ -28,25 +28,21 @@ end
 
 class Track < Car
 
+  def start_engine
+    puts "Click!!!"
+    super
+    puts "Wrooom!!!"
+  end
   def loading
   end
 
-  def wrong_method
-    self.start_engine!
+  def wrong_method(car)
+    car.start_engine!
   end
 
   private
 
   def initial_rpm
     500
-  end
-end
-
-class SportCar < Car
-
-  private
-
-  def initial_rpm
-    1000
   end
 end
