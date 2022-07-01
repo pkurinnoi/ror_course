@@ -26,7 +26,7 @@ class Car
   end
 end
 
-class Track < Car
+class Trck < Car
 
   def start_engine
     puts "Click!!!"
