@@ -13,7 +13,7 @@ class Car
     rpm.zero?
   end
 
-  protected
+  private
 
   attr_writer :rpm
 
@@ -36,11 +36,11 @@ class Track < Car
   def loading
   end
 
-  def wrong_method(car)
-    car.start_engine!
+  def wrong_method
+    self.start_engine!
   end
 
-  protected
+  private
 
   def initial_rpm
     500
