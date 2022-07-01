@@ -13,7 +13,7 @@ class Car
     rpm.zero?
   end
 
-  private
+  protected
 
   attr_writer :rpm
 
@@ -40,7 +40,7 @@ class Track < Car
     car.start_engine!
   end
 
-  private
+  protected
 
   def initial_rpm
     500
