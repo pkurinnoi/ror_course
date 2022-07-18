@@ -1,0 +1,182 @@
+class Controller
+  attr_reader :stations
+  attr_reader :trains
+  attr_reader :routes
+  attr_reader :cars
+
+  def initialize
+    @stations = []
+    @trains = []
+    @routes = []
+    @cars = []
+  end
+
+  def main_menu
+    puts 'Choose the number of an option you want to do in the Trains World'
+    puts '1. Manage stations'
+    puts '2. Manage trains'
+    puts '3. Manage routes'
+    puts '4. Manage cars'
+    puts '0. Exit'
+  end
+
+  def main_menu_run(item)
+    case item
+    when 1
+      puts 'Choose the number of an option you want to do with the Stations'
+      puts '1. Create station'
+      puts '2. List stations'
+      puts '3. Remove station'
+      puts '4. List trains on the exact station'
+      sub_menu_stations_item = gets.to_i
+      sub_menu_staions(sub_menu_stations_item)
+    when 2
+      puts 'Choose the number of an option you want to do with the Trains'
+      puts '1. Create train'
+      puts '2. List trains'
+      puts '3. Remove train'
+      puts '4. Add route to the train'
+      puts '5. Add cars to the train'
+      puts '6. Remove cars from the train'
+      puts '7. Move the train'
+      sub_menu_trains_item = gets.to_i
+      sub_menu_trains(sub_menu_trains_item)
+    when 3
+      puts 'Choose the number of an option you want to do with the Routes'
+      puts '1. Create route'
+      puts '2. List stations in the route'
+      puts '3. Add station to the route'
+      puts '4. Remove stations from the route'
+      sub_menu_routes_item = gets.to_i
+      sub_menu_routes(sub_menu_routes_item)
+    when 4
+      puts 'Choose the number of an option you want to do with the Cars'
+      puts '1. Create stations'
+      puts '2. List stations on the route'
+      puts '3. Remove stations'
+      sub_menu_cars_item = gets.to_i
+      sub_menu_cars(sub_menu_cars_item)
+    end
+  end
+
+  def sub_menu_staions(item)
+    case item
+    when 1
+      puts "To create new station, please input its name"
+      new_station_name = gets.strip.chomp.downcase
+      station = Station.new(new_station_name)
+      @stations << station
+      puts "New station #{station.name} succesfully created"
+    when 2
+      puts "Trains World have the next stations:"
+      @stations.each do |station|
+        puts "#{station.name}"
+      end
+    when 3
+      puts "To remove station please input its number"
+      stations_list_array
+      station_to_remove = gets.to_i
+      @stations.delete_at(station_to_remove)
+      puts "Done"
+    when 4
+      puts "To view the list of trains on the exact station, please input its number"
+      stations_list_array
+      station = gets.to_i
+      @stations[station].trains_list
+    end
+    puts "----"
+  end
+
+  def sub_menu_trains(item)
+    case item
+    when 1
+      puts "To create the train please choose its type by number"
+      puts "1. Passenger Train"
+      puts "2. Cargo Train"
+      type = gets.to_i
+      puts "Input the train number"
+      train_num = gets.strip.chomp.downcase
+      if type == 1
+        train = PassengerTrain.new(train_num)
+        @trains << train
+        puts "Passenger train number #{train_num} successfully created!"
+      elsif type == 2
+        train = CargoTrain.new(train_num)
+        @trains << train
+        puts "Cargo train number #{train_num} successfully created!"
+      end
+    when 2
+      puts "Trains World have the next trains:"
+      @trains.each do |train|
+        puts "#{train.train_num}"
+      end
+    when 3
+      puts "To remove train please input its number"
+      trains_list_array
+      train_to_remove = gets.to_i
+      @trains.delete_at(train_to_remove)
+      puts "Done"
+    when 4
+      #TODO
+      puts "under construction"
+    when 5
+      #TODO
+      puts "under construction"
+    when 6
+      #TODO
+      puts "under construction"
+    when 7
+      #TODO
+      puts "under construction"
+    end
+    puts "----"
+  end
+
+  def sub_menu_routes(item)
+    case item
+    when 1
+      #TODO
+      puts "under construction"
+    when 2
+      #TODO
+      puts "under construction"
+    when 3
+      #TODO
+      puts "under construction"
+    when 4
+      #TODO
+      puts "under construction"
+    end
+  end
+
+  def sub_menu_cars(item)
+    #TODO
+    puts "under construction"
+  end
+
+  private
+
+  def stations_list_array
+    i = 0
+    @stations.each do |station|
+      puts "#{i}. #{station.name}"
+      i += 1
+    end
+  end
+
+  def trains_list_array
+    i = 0
+    @trains.each do |train|
+      puts "#{i}. #{train.train_num}"
+      i += 1
+    end
+  end
+
+  def routes_list_array
+    i = 0
+    @routes.each do |route|
+      puts "#{i}. #{route.route}"
+      i += 1
+    end
+  end
+end

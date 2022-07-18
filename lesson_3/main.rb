@@ -5,13 +5,15 @@ require_relative 'passtrain'
 require_relative 'cargotrain'
 require_relative 'passcar'
 require_relative 'cargocar'
+require_relative 'controller'
 
+puts "Welcome to the Trains World! Let' play the trains!"
 
-puts "Let' play the trains! First of all we need to create the world. Please add as many stations as you want, when you will finish creating the world, please write 'Done'"
+controller = Controller.new
 
 loop do
-  puts "Write down the name of the new station:"
-  new_station_name = gets.chomp.downcase
-  break if new_station_name == 'done'
-  new_station_name = Station.new
+  controller.main_menu
+  main_menu_item = gets.to_i
+  break if main_menu_item == 0
+  controller.main_menu_run(main_menu_item)
 end
