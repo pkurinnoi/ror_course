@@ -2,7 +2,7 @@ class Station
   attr_reader :trains_list
   attr_reader :name
 
-  def initialize(st_name)
+  def initialize(st_name = 'xxx')
     @name = st_name
     @trains_list = []
   end
@@ -23,6 +23,10 @@ class Station
     end
     result = { temporary_trains_list_by_type.size() => temporary_trains_list_by_type }
     result
+  end
+
+  def by_type
+    @trains_list.map { |train| train if train.type.includes?(types) }
   end
 
   def train_departure(train)

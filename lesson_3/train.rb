@@ -1,47 +1,42 @@
 class Train
   attr_reader :train_num
   attr_reader :type
-  attr_reader :car_num
+  attr_reader :cars
   attr_reader :speed
 
   attr_accessor :current_station
 
-  def initialize(train_num, type, car_num, speed = 0)
-    @train_num = train_num
-    @car_num = car_num
-    @type = type
-    @speed = speed
-    types = ['pass','cargo']
-    raise "Error: type must be 'pass' or 'cargo'" unless types.include?(type)
-  end
-
-  def set_speed(speed)
-    @speed = speed
-  end
-
-  def stop
-    @speed = 0
-  end
-
-  def cars_change(cars)
-    if @speed == 0
-      if cars > 0
-        @car_num += 1
-      else
-        @car_num -= 1
+  def car_add(car) # используется напрямую снаружи класса
+      if car.type == self.type && car.train.nil? && @speed == 0
+        @cars << car
+        car.train = self
+      elsif car.train != nil
+        puts "Car already in train #{car.train.train_num}"
+      elsif car.type != self.type
+        puts "Can't add #{car.type} car to the #{self.type} train"
+      elsif @speed != 0
+        puts "Train on a go. Can't change the cars! Stop the train first"
       end
-    else
+  end
+
+  def car_remove(car)
+    if car.train == self && @speed == 0
+      @cars.delete(car)
+      car.train = nil
+    elsif @speed != 0
       puts "Train on a go. Can't change the cars! Stop the train first"
+    else
+      puts "Car #{car} is not in #{self.train_num}"
     end
   end
 
-  def get_route(map)
+  def get_route(map) # используется напрямую снаружи класса
     @current_route = map
     @current_route.start_station.train_arrival(self)
     @current_station = @current_route.start_station
   end
 
-  def move(direction)
+  def move(direction) # используется напрямую снаружи класса
     directions = ['fwd','back']
     raise "Error: type must be 'fwd' or 'back'" unless directions.include?(direction)
 
@@ -60,7 +55,7 @@ class Train
     end
   end
 
-  def prev_station
+  def prev_station # используется напрямую снаружи класса
     station_num = @current_route.route.find_index(@current_station)
 
     if station_num > 0
@@ -68,11 +63,21 @@ class Train
     end
   end
 
-  def next_station
+  def next_station # используется напрямую снаружи
     station_num = @current_route.route.find_index(@current_station)
 
     if station_num < @current_route.route.size() - 1
       @current_route.route[station_num + 1]
     end
+  end
+
+  private
+
+  def set_speed(speed) # используется только внутри класса и подклассами - private
+    @speed = speed
+  end
+
+  def stop # используется только внутри класса и подклассами - private
+    @speed = 0
   end
 end
