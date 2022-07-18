@@ -51,9 +51,9 @@ class Controller
       sub_menu_routes(sub_menu_routes_item)
     when 4
       puts 'Choose the number of an option you want to do with the Cars'
-      puts '1. Create stations'
-      puts '2. List stations on the route'
-      puts '3. Remove stations'
+      puts '1. Create car'
+      puts '2. List cars'
+      puts '3. Remove car'
       sub_menu_cars_item = gets.to_i
       sub_menu_cars(sub_menu_cars_item)
     end
@@ -118,7 +118,15 @@ class Controller
       puts "Done"
     when 4
       #TODO
-      puts "under construction"
+      puts "Please choose the train number from the list"
+      trains_list_array
+      train_id = gets.to_i
+      puts "Please choose the route number from the list"
+      routes_list_array
+      route_id = gets.to_i
+      train = @trains[train_id]
+      route = @routes[route_id]
+      train.get_route(route)
     when 5
       #TODO
       puts "under construction"
@@ -135,8 +143,17 @@ class Controller
   def sub_menu_routes(item)
     case item
     when 1
-      #TODO
-      puts "under construction"
+      puts "To create new route please input the station number"
+      stations_list_array
+      start_station_id = gets.to_i
+      puts "And the final station"
+      stations_list_array
+      final_station_id = gets.to_i
+      start_station = @stations[start_station_id]
+      final_station = @stations[final_station_id]
+      route = Route.new(start_station, final_station)
+      @routes << route
+      puts "New route #{route} created"
     when 2
       #TODO
       puts "under construction"
@@ -147,11 +164,32 @@ class Controller
       #TODO
       puts "under construction"
     end
+    puts "----"
   end
 
   def sub_menu_cars(item)
-    #TODO
-    puts "under construction"
+    case item
+    when 1
+      puts "To create new car choose its type by number"
+      puts "1. Passenger car"
+      puts "2. Cargo car"
+      car_id = gets.to_i
+      if car_id == 1
+        car = PassCar.new
+        @cars << car
+        puts "New Passenger Car #{car} created!"
+      elsif car_id == 2
+        car = CargoCar.new
+        @cars << car
+        puts "New Cargo Car #{car} created!"
+      end
+    when 2
+      puts "The list of cars:"
+      @cars.each do |car|
+        puts "#{car}"
+      end
+    end
+    puts "----"
   end
 
   private
@@ -176,6 +214,14 @@ class Controller
     i = 0
     @routes.each do |route|
       puts "#{i}. #{route.route}"
+      i += 1
+    end
+  end
+
+  def cars_list_array
+    i = 0
+    @rcars.each do |car|
+      puts "#{i}. #{car}"
       i += 1
     end
   end
