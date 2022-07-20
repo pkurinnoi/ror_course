@@ -10,6 +10,7 @@ class Train
       if car.type == self.type && car.train.nil? && @speed == 0
         @cars << car
         car.train = self
+        puts "Car #{car} successfully added to the train #{self.train_num}"
       elsif car.train != nil
         puts "Car already in train #{car.train.train_num}"
       elsif car.type != self.type
@@ -23,6 +24,7 @@ class Train
     if car.train == self && @speed == 0
       @cars.delete(car)
       car.train = nil
+      puts "Car #{car} successfully removed from the train #{self.train_num}"
     elsif @speed != 0
       puts "Train on a go. Can't change the cars! Stop the train first"
     else
@@ -53,6 +55,7 @@ class Train
       @current_station.train_arrival(self)
       stop
     end
+    puts "Train on the station #{current_station.name}"
   end
 
   def prev_station # используется напрямую снаружи класса
