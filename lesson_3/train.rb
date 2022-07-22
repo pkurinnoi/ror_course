@@ -1,10 +1,18 @@
 class Train
+  include Vendor
+
   attr_reader :train_num
   attr_reader :type
-  attr_reader :cars
+  attr_reader :carsname
   attr_reader :speed
 
   attr_accessor :current_station
+
+  @@all_trains = {}
+
+  def self.find(train_num)
+    @@all_trains[train_num]
+  end
 
   def car_add(car) # используется напрямую снаружи класса
       if car.type == self.type && car.train.nil? && @speed == 0

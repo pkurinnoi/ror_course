@@ -1,3 +1,4 @@
+require_relative 'vendor'
 require_relative 'station'
 require_relative 'train'
 require_relative 'route'
@@ -6,6 +7,7 @@ require_relative 'cargotrain'
 require_relative 'passcar'
 require_relative 'cargocar'
 require_relative 'controller'
+
 
 puts "Welcome to the Trains World! Let' play the trains!"
 

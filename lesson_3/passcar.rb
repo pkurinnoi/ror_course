@@ -1,4 +1,6 @@
 class PassCar
+  include Vendor
+
   attr_reader :type
   attr_accessor :train
 

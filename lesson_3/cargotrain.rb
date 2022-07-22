@@ -4,5 +4,7 @@ class CargoTrain < Train
     @type = 'cargo'
     @speed = speed
     @cars = []
+
+    @@all_trains[train_num] = self
   end
 end
