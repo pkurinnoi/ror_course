@@ -8,14 +8,14 @@ class Train
 
   attr_accessor :current_station
 
-  @@all_trains = {}
+  @@all_trains = []
 
-  def add_to_list(train_num)
-    @@all_trains[train_num] = self
+  def add_to_list
+    @@all_trains << self
   end
 
   def self.find(train_num)
-    @@all_trains[train_num]
+    @@all_trains.filter { |obj| obj.train_num == train_num }
   end
 
   def car_add(car) # используется напрямую снаружи класса

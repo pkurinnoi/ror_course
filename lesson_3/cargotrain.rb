@@ -7,7 +7,7 @@ class CargoTrain < Train
     @speed = speed
     @cars = []
 
-    add_to_list(train_num)
+    add_to_list
     register_instance
   end
 end
