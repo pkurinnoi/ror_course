@@ -11,7 +11,7 @@ class Station
   end
 
   def initialize(st_name)
-    self.class.instances_increase
+    register_instance
     @name = st_name
     @trains_list = []
     @@all_stations << self

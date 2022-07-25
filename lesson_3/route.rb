@@ -6,7 +6,7 @@ class Route
   attr_accessor :middle
 
   def initialize(start_station, final_station)
-    self.class.instances_increase
+    register_instance
     @middle = []
     @start_station = start_station
     @final_station = final_station
