@@ -1,5 +1,6 @@
 class Train
   include Vendor
+  include InstanceCounter
 
   attr_reader :train_num
   attr_reader :type
@@ -9,6 +10,10 @@ class Train
   attr_accessor :current_station
 
   @@all_trains = {}
+
+  def initialize
+    register_instance
+  end
 
   def self.find(train_num)
     @@all_trains[train_num]

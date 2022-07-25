@@ -1,4 +1,6 @@
 class Station
+  include InstanceCounter
+
   attr_reader :trains_list
   attr_reader :name
 
@@ -9,6 +11,7 @@ class Station
   end
 
   def initialize(st_name)
+    self.class.instances_increase
     @name = st_name
     @trains_list = []
     @@all_stations << self

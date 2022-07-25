@@ -1,9 +1,12 @@
 class Route
+  include InstanceCounter
+
   attr_reader :start_station
 
   attr_accessor :middle
 
   def initialize(start_station, final_station)
+    self.class.instances_increase
     @middle = []
     @start_station = start_station
     @final_station = final_station
