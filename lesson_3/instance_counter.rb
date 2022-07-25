@@ -8,14 +8,12 @@ module InstanceCounter
 
     module ClassMethods
 
-      @@instances = 0
-
       def instances
-        @@instances
+        @instances || 0
       end
 
       def instance_increace
-        @@instances += 1
+        @instances = (@instances || 0) + 1
       end
     end
 
