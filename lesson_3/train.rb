@@ -1,6 +1,5 @@
 class Train
   include Vendor
-  include InstanceCounter
 
   attr_reader :train_num
   attr_reader :type
@@ -11,8 +10,8 @@ class Train
 
   @@all_trains = {}
 
-  def initialize
-    register_instance
+  def add_to_list(train_num)
+    @@all_trains[train_num] = self
   end
 
   def self.find(train_num)
