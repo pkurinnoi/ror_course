@@ -4,6 +4,8 @@ module InstanceCounter
       base.include InstanceMethods
     end
 
+    protected
+
     module ClassMethods
 
       @@instances = 0
