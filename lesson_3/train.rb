@@ -10,6 +10,12 @@ class Train
 
   @@all_trains = []
 
+  NUM = /^[a-zA-Z0-9]{3}-?[a-zA-Z0-9]{2}$/
+
+  def initialize
+    validate!
+  end
+
   def add_to_list
     @@all_trains << self
   end
@@ -84,6 +90,20 @@ class Train
     if station_num < @current_route.route.size() - 1
       @current_route.route[station_num + 1]
     end
+  end
+
+  def validate!
+    raise "Wrong train number!" if @train_num !~ NUM
+    raise "Wrong type!" if (@type != 'cargo' || @type != 'pass')
+    raise "Train speed must be '0'!" if @speed != 0
+    raise "Wrong number of cars!" if @cars.any?
+  end
+
+  def valid?
+    validate!
+    true
+  rescue
+    false
   end
 
   private

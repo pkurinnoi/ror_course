@@ -6,6 +6,8 @@ class Station
 
   @@all_stations = []
 
+  NAME = /^\w*$/
+
   def self.all
     @@all_stations
   end
@@ -15,6 +17,7 @@ class Station
     @name = st_name
     @trains_list = []
     @@all_stations << self
+    validate!
   end
 
   def train_arrival(train)
@@ -47,4 +50,14 @@ class Station
     end
   end
 
+  def validate!
+    raise "Wrong name!" if self.name !~ NAME
+  end
+
+  def valid?
+    validate!
+    true
+  rescue
+    false
+  end
 end

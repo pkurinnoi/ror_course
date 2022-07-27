@@ -6,13 +6,22 @@ class PassCar
 
   def initialize
     @train = nil
-  end
-
-  def type
     @type = 'pass'
+    validate!
   end
 
   def in_train(train)
     @train = train
+  end
+
+  def validate!
+    raise "Wrong car class!" if self.type != 'pass'
+  end
+
+  def valid?
+    validate!
+    true
+  rescue
+    false
   end
 end
