@@ -96,6 +96,7 @@ class Controller
       puts "1. Passenger Train"
       puts "2. Cargo Train"
       type = gets.to_i
+      begin
       puts "Input the train number"
       train_num = gets.strip.chomp.downcase
       if type == 1
@@ -106,6 +107,11 @@ class Controller
         train = CargoTrain.new(train_num)
         @trains << train
         puts "Cargo train number #{train_num} successfully created!"
+      end
+      rescue RuntimeError => e
+        puts "#{e.message} Press Enter to continue!"
+        gets
+        main_menu
       end
     when 2
       puts "Trains World have the next trains:"
