@@ -24,7 +24,7 @@ class Train
     @@all_trains.filter { |obj| obj.train_num == train_num }
   end
 
-  def car_add(car) # используется напрямую снаружи класса
+  def car_add(car) # кроме методов, которые и должны что-то выводить на экран. выводим подсказки
       if car.type == self.type && car.train.nil? && @speed == 0
         @cars << car
         car.train = self
@@ -38,7 +38,7 @@ class Train
       end
   end
 
-  def car_remove(car)
+  def car_remove(car) # кроме методов, которые и должны что-то выводить на экран. выводим подсказки
     if car.train == self && @speed == 0
       @cars.delete(car)
       car.train = nil
@@ -73,7 +73,7 @@ class Train
       @current_station.train_arrival(self)
       stop
     end
-    puts "Train on the station #{current_station.name}"
+    @current_station.name
   end
 
   def prev_station # используется напрямую снаружи класса

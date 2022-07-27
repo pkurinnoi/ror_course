@@ -15,7 +15,6 @@ class Route
 
   def add(station)
     @middle << station
-    puts "Stations #{station.name} successfully added to the route!"
   end
 
   def remove(station)

@@ -45,8 +45,6 @@ class Station
   def train_departure(train)
     if @trains_list.include? train
       @trains_list.delete(train)
-    else
-      puts "There is no train #{train} in #{@name}"
     end
   end
 
