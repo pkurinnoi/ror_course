@@ -94,7 +94,7 @@ class Train
 
   def validate!
     raise "Wrong train number!" if @train_num !~ NUM
-    raise "Wrong type!" if (@type != 'cargo' || @type != 'pass')
+    raise "Wrong type!" if (@type != 'cargo' && @type != 'pass')
     raise "Train speed must be '0'!" if @speed != 0
     raise "Wrong number of cars!" if @cars.any?
   end
