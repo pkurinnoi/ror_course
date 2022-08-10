@@ -54,7 +54,7 @@ class Controller
       puts 'Choose the number of an option you want to do with the Cars'
       puts '1. Create car'
       puts '2. List cars'
-      puts '3. Remove car'
+      puts '3. Take a car seat or space'
       sub_menu_cars_item = gets.to_i
       sub_menu_cars(sub_menu_cars_item)
     end
@@ -96,6 +96,7 @@ class Controller
       puts "1. Passenger Train"
       puts "2. Cargo Train"
       type = gets.to_i
+      attempt = 0
       begin
       puts "Input the train number"
       train_num = gets.strip.chomp.downcase
@@ -109,9 +110,11 @@ class Controller
         puts "Cargo train number #{train_num} successfully created!"
       end
       rescue RuntimeError => e
-        puts "#{e.message} Press Enter to continue!"
-        gets
-        main_menu
+        puts "#{e.message} Enter valid train number!"
+        attempt += 1
+        retry if attempt < 3
+      ensure
+        puts "#{attempt} attempts failed!"
       end
     when 2
       puts "Trains World have the next trains:"
@@ -247,11 +250,15 @@ class Controller
       puts "2. Cargo car"
       car_id = gets.to_i
       if car_id == 1
-        car = PassCar.new
+        puts "Enter number of seats"
+        amount = gets.to_i
+        car = PassCar.new(amount)
         @cars << car
         puts "New Passenger Car #{car} created!"
       elsif car_id == 2
-        car = CargoCar.new
+        puts "Enter the size of car space"
+        amount = gets.to_i
+        car = CargoCar.new(amount)
         @cars << car
         puts "New Cargo Car #{car} created!"
       end
@@ -259,6 +266,17 @@ class Controller
       puts "The list of cars:"
       @cars.each do |car|
         puts "#{car}"
+      end
+    when 3
+      puts "Choose the car to take a seat or space"
+      cars_list_array
+      car_id = gets.to_i
+      if @cars[car_id].type == 'pass'
+        @cars[car_id].qty_increase(1)
+      elsif @cars[car_id].type == 'cargo'
+        puts "Enter cargo space you want to take. Free space is #{@cars[car_id].free_amount}"
+        qty = gets.to_i
+        @cars[car_id].qty_increase(qty)
       end
     end
     puts "----"

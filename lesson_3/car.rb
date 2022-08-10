@@ -3,6 +3,8 @@ class Car
 
   attr_reader :type
   attr_accessor :train
+  attr_reader :qty
+  attr_reader :free_amount
 
   def initialize
     @train = nil
@@ -11,6 +13,15 @@ class Car
 
   def in_train(train)
     @train = train
+  end
+
+  def qty_increase(quantity)
+      if (@qty + quantity) <= @amount
+      @qty += quantity
+      @free_amount = @amount - @qty
+      else
+        puts "No enought seats or space"
+      end
   end
 
   def validate!
