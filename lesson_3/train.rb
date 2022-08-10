@@ -1,10 +1,7 @@
 class Train
   include Vendor
 
-  attr_reader :train_num
-  attr_reader :type
-  attr_reader :carsname
-  attr_reader :speed
+  attr_reader :train_num, :type, :carsname, :speed, :cars
 
   attr_accessor :current_station
 

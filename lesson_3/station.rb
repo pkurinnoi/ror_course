@@ -21,7 +21,9 @@ class Station
   end
 
   def check
-
+    @trains_list.each do |train|
+      puts "Train num: #{train.train_num}, Train type: #{train.type}, Cars: #{train.cars.size}"
+    end
   end
 
   def train_arrival(train)

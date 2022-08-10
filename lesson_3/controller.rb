@@ -84,8 +84,9 @@ class Controller
       puts "To view the list of trains on the exact station, please input its number"
       stations_list_array
       station = gets.to_i
-      puts "The next trains are on the station #{@stations[station].name}"
-      puts "#{@stations[station].trains_list}"
+      @stations[station].check
+      # puts "The next trains are on the station #{@stations[station].check}"
+      #  puts "#{@stations[station].trains_list}"
     end
     puts "----"
   end
