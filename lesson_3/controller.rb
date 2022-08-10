@@ -40,6 +40,7 @@ class Controller
       puts '6. Remove cars from the train'
       puts '7. Move the train'
       puts '8. Find previous and next stations'
+      puts '9. Train cars list'
       sub_menu_trains_item = gets.to_i
       sub_menu_trains(sub_menu_trains_item)
     when 3
@@ -194,6 +195,11 @@ class Controller
       else
         puts "The previous station for the train #{@trains[train_id].train_num} is #{@trains[train_id].prev_station.name}"
       end
+    when 9
+      puts "To check the cars please choose the train from the list by number"
+      trains_list_array
+      train_id = gets.to_i
+      @trains[train_id].check
     end
     puts "----"
   end
@@ -265,7 +271,7 @@ class Controller
     when 2
       puts "The list of cars:"
       @cars.each do |car|
-        puts "#{car}"
+        puts "#{car}, num: #{car.car_num}"
       end
     when 3
       puts "Choose the car to take a seat or space"

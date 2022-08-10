@@ -16,6 +16,12 @@ class Train
     validate!
   end
 
+  def check
+    @cars.each do |car|
+      puts "Car num: #{car.car_num}, Car type: #{car.type}, Free: #{car.free_amount}, Booked: #{car.qty}"
+    end
+  end
+
   def add_to_list
     @@all_trains << self
   end

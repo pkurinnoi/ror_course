@@ -20,6 +20,10 @@ class Station
     validate!
   end
 
+  def check
+
+  end
+
   def train_arrival(train)
     @trains_list.push(train)
   end

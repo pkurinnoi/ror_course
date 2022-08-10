@@ -2,9 +2,11 @@ class Car
   include Vendor
 
   attr_reader :type
-  attr_accessor :train
+  attr_accessor :train, :car_num
   attr_reader :qty
   attr_reader :free_amount
+
+  @@total_cars = 0
 
   def initialize
     @train = nil
