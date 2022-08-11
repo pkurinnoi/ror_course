@@ -3,13 +3,12 @@ require_relative 'instance_counter'
 require_relative 'station'
 require_relative 'train'
 require_relative 'route'
-require_relative 'passtrain'
-require_relative 'cargotrain'
+require_relative 'pass_train'
+require_relative 'cargo_train'
 require_relative 'car'
-require_relative 'passcar'
-require_relative 'cargocar'
+require_relative 'pass_car'
+require_relative 'cargo_car'
 require_relative 'controller'
-
 
 puts "Welcome to the Trains World! Let' play the trains!"
 
