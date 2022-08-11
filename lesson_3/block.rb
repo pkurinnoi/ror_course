@@ -1,0 +1,3 @@
+def met
+  yield
+end
