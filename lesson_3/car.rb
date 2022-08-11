@@ -18,9 +18,9 @@ class Car
   end
 
   def qty_increase(quantity)
-      if (@qty + quantity) <= @amount
-      @qty += quantity
-      @free_amount = @amount - @qty
+      if @qty + quantity <= @amount
+        @qty += quantity
+        @free_amount = @amount - @qty
       else
         puts "No enought seats or space"
       end
