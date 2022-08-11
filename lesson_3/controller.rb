@@ -198,7 +198,7 @@ class Controller
       puts "To check the cars please choose the train from the list by number"
       trains_list_array
       train_id = gets.to_i
-      @trains[train_id].check
+      @trains[train_id].check { |car| puts "#{car.car_num}, #{car.type}, #{car.qty}, #{car.free_amount}" }
     end
     puts "----"
   end

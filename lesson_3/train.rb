@@ -14,9 +14,7 @@ class Train
   end
 
   def check
-    @cars.each do |car|
-      puts "Car num: #{car.car_num}, Car type: #{car.type}, Free: #{car.free_amount}, Booked: #{car.qty}"
-    end
+    @cars.each { |car| yield(car) }
   end
 
   def add_to_list

@@ -21,9 +21,7 @@ class Station
   end
 
   def check
-    @trains_list.each do|train|
-    yield(train)
-    end
+    @trains_list.each { |train| yield(train) }
   end
 
   def train_arrival(train)
