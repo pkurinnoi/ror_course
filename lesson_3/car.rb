@@ -1,15 +1,18 @@
+# frozen_string_literal: true
+
 class Car
   include Vendor
 
-  attr_reader :type
+  attr_reader :type, :qty, :free_amount
   attr_accessor :train, :car_num
-  attr_reader :qty
-  attr_reader :free_amount
 
-  @@total_cars = 0
-
-  def initialize
+  def initialize(amount)
     @train = nil
+    @amount = amount
+    @qty = 0
+    @free_amount = amount
+    @car_num = rand(16**amount).to_s(36)
+
     validate!
   end
 
@@ -18,22 +21,22 @@ class Car
   end
 
   def qty_increase(quantity)
-      if @qty + quantity <= @amount
-        @qty += quantity
-        @free_amount = @amount - @qty
-      else
-        puts "No enought seats or space"
-      end
+    if @qty + quantity <= @amount
+      @qty += quantity
+      @free_amount = @amount - @qty
+    else
+      puts 'No enought seats or space'
+    end
   end
 
   def validate!
-    raise "Wrong car type!" if (self.type != 'cargo' && self.type != 'pass')
+    raise 'Wrong car type!' if type != 'cargo' && type != 'pass'
   end
 
   def valid?
     validate!
     true
-  rescue
+  rescue StandardError
     false
   end
 end

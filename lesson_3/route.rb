@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Route
   include InstanceCounter
 
@@ -26,14 +28,14 @@ class Route
   end
 
   def validate!
-    raise "Create start station first!" unless Station.all.filter { |obj| obj.name == @start_station }.empty?
-    raise "Create final station first!" unless Station.all.filter { |obj| obj.name == @final_station }.empty?
+    raise 'Create start station first!' unless Station.all.filter { |obj| obj.name == @start_station }.empty?
+    raise 'Create final station first!' unless Station.all.filter { |obj| obj.name == @final_station }.empty?
   end
 
   def valid?
     validate!
     true
-  rescue
+  rescue StandardError
     false
   end
 end
