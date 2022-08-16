@@ -11,7 +11,7 @@ module SubMenuStations
     puts '----'
   end
 
-  def new_staiton
+  def new_station
     puts 'To create new station, please input its name'
     station = Station.new(gets.strip.chomp.downcase)
     @stations << station

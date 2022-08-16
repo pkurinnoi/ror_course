@@ -1,6 +1,6 @@
 module TrainCarsActions
 
-  def arr_cars
+  def add_cars
     puts 'To add car to the train please choose the train from the list by number'
     trains_list_array
     train_id = gets.to_i

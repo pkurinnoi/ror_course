@@ -4,6 +4,8 @@ class Controller
   include Arrays
   include SubMenuStations
   include SubMenuTrains
+  include TrainCarsActions
+  include TrainsActions
   include SubMenuRoutes
   include SubMenuCars
 

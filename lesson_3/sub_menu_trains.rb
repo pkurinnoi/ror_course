@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 module SubMenuTrains
-  include TrainCarsActions
-  include TrainActions
 
   def sub_menu_trains(item)
     case item
