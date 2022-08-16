@@ -20,7 +20,6 @@ class Controller
                  '3. Remove train',
                  '4. Add route to the train',
                  '5. Add cars to the train',
-
                  '6. Remove cars from the train',
                  '7. Move the train',
                  '8. Find previous and next stations',

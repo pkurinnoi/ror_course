@@ -2,6 +2,8 @@
 
 require_relative 'sub_menu_stations'
 require_relative 'sub_menu_trains'
+require_relative 'trains_actions'
+require_relative 'train_cars_actions'
 require_relative 'sub_menu_routes'
 require_relative 'sub_menu_cars'
 require_relative 'vendor'
