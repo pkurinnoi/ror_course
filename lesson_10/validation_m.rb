@@ -8,8 +8,8 @@ module Validation
     def validations
       @validations ||= []
     end
-    def validate(attribute, validation_type, validation_mask = nil)
-      validations.push({attr: attribute, type: validation_type, mask: validation_mask})
+    def validate(attribute, validation_type, params = nil)
+      validations.push({attr: attribute, type: validation_type, mask: params})
     end
   end
 
@@ -60,6 +60,7 @@ module Validation
     raise "=Object #{name} with #{value} does not exist!" if params.none? do |i|
       i.instance_variable_get("@#{name}") == value
     end
+  end
 end
 
 
