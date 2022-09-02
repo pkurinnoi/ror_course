@@ -2,6 +2,11 @@
 
 class Station
   include InstanceCounter
+  include Validation
+
+  validate :name, :presence
+  validate :name, :length, [1, 20]
+  validate :name, :not_yet_existed
 
   class << self
     attr_accessor :all_stations
