@@ -23,11 +23,11 @@ class Station
   end
 
   def initialize(st_name)
+    validate!
     register_instance
     @name = st_name
     @trains_list = []
     Station.all_stations << self
-    validate!
   end
 
   def check(&block)

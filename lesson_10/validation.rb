@@ -65,7 +65,7 @@ end
 
 
 class Y
-  require_relative 'accessors_m'
+  require_relative 'accessors'
 
   extend Validation
   extend Accessors

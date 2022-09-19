@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require_relative 'validation_m'
-require_relative 'accessors_m'
+require_relative 'validation'
+require_relative 'accessors'
 require_relative 'sub_menu_stations'
 require_relative 'sub_menu_trains'
 require_relative 'trains_actions'
