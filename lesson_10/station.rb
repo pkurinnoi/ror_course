@@ -23,9 +23,9 @@ class Station
   end
 
   def initialize(st_name)
+    @name = st_name
     validate!
     register_instance
-    @name = st_name
     @trains_list = []
     Station.all_stations << self
   end
@@ -58,10 +58,10 @@ class Station
   end
 
   def validate!
-    raise 'Wrong name!' if name !~ NAME
+     raise 'Wrong name!' if @name !~ NAME
   end
 
-  def valid?
+   def valid?
     validate!
     true
   rescue StandardError
