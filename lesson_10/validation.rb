@@ -62,13 +62,3 @@ module Validation
     end
   end
 end
-
-
-class Y
-  require_relative 'accessors'
-
-  extend Validation
-  extend Accessors
-
-  attr_accessor_with_history :a, :b, :c, :d, :e, :f
-end
