@@ -2,6 +2,7 @@
 
 class Train
   include TrainMove
+  include Accessors
 
   class << self
     attr_accessor :all_trains

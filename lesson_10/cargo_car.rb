@@ -2,6 +2,7 @@
 
 class CargoCar < Car
   include Vendor
+  include Accessors
 
   def initialize(amount)
     @type = 'cargo'

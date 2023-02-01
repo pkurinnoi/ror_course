@@ -2,6 +2,7 @@
 
 class Car
   include Vendor
+  include Accessors
 
   attr_reader :type, :qty, :free_amount
   attr_accessor :train, :car_num

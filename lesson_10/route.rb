@@ -2,6 +2,7 @@
 
 class Route
   include InstanceCounter
+  include Accessors
 
   attr_reader :start_station
 

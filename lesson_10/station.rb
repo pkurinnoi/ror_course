@@ -3,6 +3,7 @@
 class Station
   include InstanceCounter
   include Validation
+  include Accessors
 
   validate :name, :presence
   validate :name, :length, [1, 20]

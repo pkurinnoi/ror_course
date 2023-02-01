@@ -2,6 +2,7 @@
 
 class PassengerTrain < Train
   include InstanceCounter
+  include Accessors
 
   def initialize(train_num, speed = 0)
     @type = 'pass'

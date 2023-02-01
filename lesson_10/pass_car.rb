@@ -2,6 +2,7 @@
 
 class PassCar < Car
   include Vendor
+  include Accessors
 
   def initialize(amount)
     @type = 'pass'
