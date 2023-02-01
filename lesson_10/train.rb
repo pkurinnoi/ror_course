@@ -1,15 +1,10 @@
 # frozen_string_literal: true
-
+#
 class Train
-  include TrainMove
   include Accessors
-  include Validation
-
-  class << self
-    attr_accessor :all_trains
-  end
-
+  include TrainMove
   include Vendor
+  include Validation
 
   attr_reader :train_num, :type, :speed, :cars
 
@@ -17,9 +12,16 @@ class Train
 
   NUM = /^[a-zA-Z0-9]{3}-?[a-zA-Z0-9]{2}$/.freeze
 
+  attr_accessor_with_history :driver, :conductor
+  strong_attr_accessor :home_station, Station
+
   validate :num, :presence
   validate :num, :type
   validate :num, :format, NUM
+
+  class << self
+    attr_accessor :all_trains
+  end
 
   Train.all_trains = []
 
