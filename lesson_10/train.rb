@@ -17,6 +17,10 @@ class Train
 
   NUM = /^[a-zA-Z0-9]{3}-?[a-zA-Z0-9]{2}$/.freeze
 
+  validate :num, :presence
+  validate :num, :type
+  validate :num, :format, NUM
+
   Train.all_trains = []
 
   def initialize(train_num, speed = 0)
@@ -97,10 +101,7 @@ class Train
   end
 
   def validate!
-    raise 'Wrong train number!' if @train_num !~ NUM
-    raise 'Wrong type!' if @type != 'cargo' && @type != 'pass'
-    raise "Train speed must be '0'!" if @speed != 0
-    raise 'Wrong number of cars!' if @cars.any?
+    raise 'Wrong train num!' if @train_num !~ NUM
   end
 
   def valid?
@@ -121,4 +122,17 @@ class Train
   def stop
     @speed = 0
   end
+
+  def validate_delete_wagon!
+    raise 'No cars available!' if @cars.empty?
+  end
+
+  def validate_next_station!
+    raise 'This is final station!' if @current_station == @current_route.first.stations[-1]
+  end
+
+  def validate_prev_station!
+    raise 'Это начальная станция!' if @current_station == @current_route.first.stations[0]
+  end
+
 end

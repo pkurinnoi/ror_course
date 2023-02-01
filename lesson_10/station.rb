@@ -5,9 +5,10 @@ class Station
   include Validation
   include Accessors
 
+  STATION_NAME_FORMAT = /^[0-9]+$/.freeze
+
   validate :name, :presence
-  validate :name, :length, [1, 20]
-  validate :name, :not_yet_existed
+  validate :name, :format, STATION_NAME_FORMAT
 
   class << self
     attr_accessor :all_stations
@@ -58,8 +59,11 @@ class Station
     @trains_list.delete(train) if @trains_list.include? train
   end
 
+  private
+
   def validate!
-     raise 'Wrong name!' if @name !~ NAME
+    raise 'Minimum 2 symbols required' if name.empty? || name.length < 2
+    raise 'Minimum 1 letter required' if name =~ STATION_NAME_FORMAT
   end
 
    def valid?
