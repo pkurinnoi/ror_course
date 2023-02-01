@@ -3,6 +3,7 @@
 class Train
   include TrainMove
   include Accessors
+  include Validation
 
   class << self
     attr_accessor :all_trains

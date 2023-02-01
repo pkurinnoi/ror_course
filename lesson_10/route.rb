@@ -3,6 +3,7 @@
 class Route
   include InstanceCounter
   include Accessors
+  include Validation
 
   attr_reader :start_station
 
