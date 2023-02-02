@@ -33,17 +33,17 @@ module Validation
     end
   end
 
-  def presense(name, value, _)
+  def validate_presence(name, value, _)
     raise "#{name} value is nil" if value.nil?
     raise "#{name} value is empty" if value.to_s == ""
   end
 
-  def format(name, value, params)
-    raise "#{name} with value #{value} do not fir: #{params.to_s}" if value.to_s !~ params
+  def validate_format(name, value, params)
+    raise "#{name} with value #{value} do not fit #{params.to_s}" if value.to_s !~ params
   end
 
-  def type(name, value, params)
-    raise "#{name} with value #{value} has different class #{value.class} than #{params}" if value.class.to_s != type.to_s
+  def validate_type(name, value, params)
+    raise "#{name} with value #{value} has different class #{value.class} than #{params}" if value.class.to_s != params.to_s
   end
 
   def validate_length(name, value, params)
